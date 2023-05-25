@@ -27,7 +27,7 @@ impl CounterFn for LogCounter {
 }
 
 pub struct LogRecorder {
-    state: Arc<Mutex<HashMap<String, Arc<LogCounter>>>>,
+    state: Mutex<HashMap<String, Arc<LogCounter>>>,
 }
 
 impl LogRecorder {
@@ -39,7 +39,7 @@ impl LogRecorder {
 
     fn new() -> Self {
         Self {
-            state: Arc::new(Mutex::new(HashMap::new())),
+            state: Mutex::new(HashMap::new()),
         }
     }
 }
@@ -47,27 +47,27 @@ impl LogRecorder {
 impl Recorder for LogRecorder {
     fn describe_counter(
         &self,
-        key: metrics::KeyName,
-        unit: Option<metrics::Unit>,
-        description: metrics::SharedString,
+        _key: metrics::KeyName,
+        _unit: Option<metrics::Unit>,
+        _description: metrics::SharedString,
     ) {
         todo!()
     }
 
     fn describe_gauge(
         &self,
-        key: metrics::KeyName,
-        unit: Option<metrics::Unit>,
-        description: metrics::SharedString,
+        _key: metrics::KeyName,
+        _unit: Option<metrics::Unit>,
+        _description: metrics::SharedString,
     ) {
         todo!()
     }
 
     fn describe_histogram(
         &self,
-        key: metrics::KeyName,
-        unit: Option<metrics::Unit>,
-        description: metrics::SharedString,
+        _key: metrics::KeyName,
+        _unit: Option<metrics::Unit>,
+        _description: metrics::SharedString,
     ) {
         todo!()
     }
@@ -87,11 +87,11 @@ impl Recorder for LogRecorder {
         Counter::from_arc(counter)
     }
 
-    fn register_gauge(&self, key: &metrics::Key) -> metrics::Gauge {
+    fn register_gauge(&self, _key: &metrics::Key) -> metrics::Gauge {
         todo!()
     }
 
-    fn register_histogram(&self, key: &metrics::Key) -> metrics::Histogram {
+    fn register_histogram(&self, _key: &metrics::Key) -> metrics::Histogram {
         todo!()
     }
 }
