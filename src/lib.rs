@@ -1,5 +1,7 @@
+pub mod log_exporter;
+
 use metrics::counter;
 
 pub fn do_stuff() {
-    counter!("dogs.frobnicated", 13);
+    counter!("dogs.frobnicated", 1);
 }
